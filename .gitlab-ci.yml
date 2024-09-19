@@ -1,0 +1,52 @@
+# Refer to the memo SRDS-383 for details on how to use this template.
+variables:
+  # Specify the code example version. This version is used for tagging the staging repository.
+  CE_REL_VERSION: 0.5.1
+
+  # Specify the code example author's Cypress initials/username. This will be used in CX survey URL generation and to automatically assign regression JIRA tickets.
+  CE_AUTHOR_NAME: tanya
+
+  # Specify the code example author's Infineon username. This will be used in to automatically assign regression JIRA tickets.
+  CE_AUTHOR_USERNAME: tanya
+
+  # Specify the code example author's Infineon email address. This will be used in CX survey URL generation.
+  CE_AUTHOR_EMAIL: yam-seng.tan@infineon.com
+
+  # Specify the code example Spec/ECN category - Division. E.g. MCD, MS
+  CE_SPEC_DIVISION: N/A
+
+  # Specify the code example Spec/ECN category - Business Unit. E.g. ICW, WIRED, AUTO
+  CE_SPEC_BIZ_UNIT: N/A
+
+  # Specify the code example Spec/ECN category - Product Family. E.g. PSOC, WIFI, BTABLE
+  CE_SPEC_PROD_FAMILY: N/A
+
+  # Specify the toolchain, separated by spaces. E.g. GCC_ARM IAR ARM
+  CE_TOOLCHAIN_LIST: GCC_ARM IAR 
+
+  # Specify the build configuration, separated by spaces. E.g. Release Debug
+  CE_CONFIG_LIST: Release Debug
+
+  # Specify the supported targets, separated by spaces. E.g. CY8CPROTO-062-4343W CY8CKIT-062-WIFI-BT CY8CKIT-062S2-43012
+  CE_TARGET_LIST: EVAL_6EDL7141_FOC_3SH
+  
+  # Specify the additional build parameters, like verbose output. Leave it empty if not needed.
+  CE_BUILD_PARAM: ""
+
+  # Specify the ModusToolbox version using which this CE will be tested by the CI script. When the value is empty, the script will use the latest version of the tool.
+  MTB_INSTALL_VER: ""
+
+  # Specify the Secure Boot policy (.json file name) only if you want to override the default policy.
+  CE_SECURE_POLICY: ""
+
+### DO NOT EDIT THE SECTIONS BELOW ###
+
+include:
+  - project: "wpp/ce/ci"
+    ref: develop
+    file: '/templates/yaml/mtb-example-default.yml'
+
+# Run scheduled regression test on the code example
+test-ce-regression:
+  tags:
+    - L2APPS-Regression
